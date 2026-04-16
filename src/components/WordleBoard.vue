@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import englishWordsWith5Letters from '@/englishWordsWith5Letters.json'
 import { DEFEAT_MESSAGE, VICTORY_MESSAGE } from '@/settings'
 import { ref } from 'vue'
 
-defineProps<{
-	wordOfTheDay: string
-}>()
+defineProps({
+	wordOfTheDay: {
+		type: String,
+		validator: (value: string) => englishWordsWith5Letters.includes(value),
+	},
+})
 
 const guessInProgress = ref('')
 const guessSubmitted = ref('')
